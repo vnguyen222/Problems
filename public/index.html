@@ -9,7 +9,7 @@
     <!--Custom css-->
     <link rel="stylesheet" href="style.css"> 
 
-    <!--Custom js-->
+    <!--js for submitting the code. sends a post request to /submit-->
     <script>
         function submitCode() {
             var code = document.getElementById("code").value;
@@ -58,7 +58,11 @@
                     setTimeout(function(){countdownToDate(dateTime)}, 1000);
                 }
             }
+
             var now = new Date();
+            //Counts down to 3 pm today. Change to whenever the competition ends
+            //Or to have it run for like 3 hours use
+            //var end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours() + 3, now.getMinutes(), now.getSeconds(), 0);
             var end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 15, 0, 0, 0);
             countdownToDate(end);
             //Write a simple countdown timer with a variable time length
@@ -67,35 +71,12 @@
                 while (num.length < size) num = "0" + num;
                 return num;
             }
-            /*
-
-            var timeleft = 20;
-            
-            var downloadTimer = setInterval(function(){
-                //convert seconds to hours, minutes, and seconds
-                var timeLeftHour = Math.floor(timeleft / 3600);
-                var timeLeftMin = Math.floor((timeleft % 3600) / 60);
-                var timeLeftSec = Math.floor((timeleft % 3600) % 60);
-
-                timeLeftHour = pad(timeLeftHour, 2);
-                timeLeftMin = pad(timeLeftMin, 2);
-                timeLeftSec = pad(timeLeftSec, 2);
-
-                if(timeleft <= 0){
-                    clearInterval(downloadTimer);
-                    document.getElementById("countdown").innerHTML = "Finished";
-                } else {
-                    document.getElementById("countdown").innerHTML = timeLeftHour + ":" + timeLeftMin + ":" + timeLeftSec + " remaining";
-                }
-                timeleft -= 1;
-            }, 1000);
-            */
         </script>
         <script>
                     //Allow for indentation with tab key
         document.getElementById("code").onkeydown = function(e) {
             if (e.key === 'Tab') { // tab was pressed
-                // prevent the focus lose
+                // prevent the focus loss
                 e.preventDefault();
                 // get caret position/selection
                 var start = this.selectionStart;
